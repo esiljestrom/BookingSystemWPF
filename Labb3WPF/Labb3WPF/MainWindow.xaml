@@ -1,0 +1,77 @@
+﻿<Window x:Class="Labb3WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Labb3WPF"
+        mc:Ignorable="d"
+        Title="Boka bord" Height="450" Width="800" FontSize="14">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="DatePickerTextBox">
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="Text" Value="Välj datum" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Grid Background="#FFE2ECFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Namn" Grid.Column="2" Grid.Row="1" FontWeight="Bold"/>
+        <TextBox Name="txtNamn" Grid.Column="2" Grid.Row="2" Margin="0,0,20, 15"/>
+
+        <TextBlock Text="Datum" Grid.Column="2" Grid.Row="3" FontWeight="Bold"/>
+        <DatePicker Name="dtpDatum" Grid.Column="2" Grid.Row="4" Margin="0,0,20, 15" SelectedDateFormat="Short" FirstDayOfWeek="Monday"/>
+
+
+        <TextBlock Text="Bordsnummer" Grid.Column="3" Grid.Row="1" FontWeight="Bold"/>
+        <ComboBox Name="cbxBordsnummer" Margin="0,0,0,15" Grid.Column="3" Grid.Row="2">
+            <GroupItem>1</GroupItem>
+            <GroupItem>2</GroupItem>
+            <GroupItem>3</GroupItem>
+            <GroupItem>4</GroupItem>
+            <GroupItem>5</GroupItem>
+        </ComboBox>
+
+        <TextBlock Text="Tid" Grid.Column="3" Grid.Row="3" FontWeight="Bold"/>
+        <ComboBox Name="cbxTid" Margin="0,0,0,15" Grid.Column="3" Grid.Row="4">
+            <GroupItem>17:00</GroupItem>
+            <GroupItem>18:00</GroupItem>
+            <GroupItem>19:00</GroupItem>
+            <GroupItem>20:00</GroupItem>
+            <GroupItem>21:00</GroupItem>
+        </ComboBox>
+
+
+        <Button Content="Boka" Click="Boka_Click" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Height="30" Margin="0, 10, 0, 10"/>
+
+        <Button Content="Visa Bokningar" Click="VisaBokningar_Click" Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" Height="30" Margin="0, 140, 0, 0"/>
+        <Button Content="Avboka" Click="Avboka_Click" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" Height="30" Margin="0, 10, 0, 0"/>
+
+        <TextBlock Text="Bokningar" Grid.Column="1" Grid.Row="1" FontWeight="BOld" />
+        <ListBox Name="lbxBokningar" Width="300" Grid.Column="1" Grid.Row="2" Grid.RowSpan="6" Margin="0,0,10,0"></ListBox>
+        
+    </Grid>
+</Window>
