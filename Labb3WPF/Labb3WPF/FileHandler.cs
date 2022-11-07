@@ -20,7 +20,7 @@ namespace Labb3WPF
         {
             var bookings = new List<Booking>(); // Skapar en lista där alla bokningar sparas
 
-            string[] properties;
+            string[] properties; 
 
             using(StreamReader sr = new StreamReader(Path))
             {
@@ -28,6 +28,9 @@ namespace Labb3WPF
                 while ((line = sr.ReadLine()) != null)
                 {
                     properties = line.Split('#');
+                    // Splittar textsträngen vid varje '#'-character och lägger in i arrayen
+                    // exempel: "Per#2022-11-5#18:00#3"
+                    //           [0] = "Per",   [1] = "2022-11-5",   [2] = "18:00",   [3] = "3"
 
                     var booking = new Booking(properties[0], properties[1], properties[2], Convert.ToInt32(properties[3]));
                     bookings.Add(booking);
@@ -39,7 +42,7 @@ namespace Labb3WPF
 
         public static void SaveBooking(Booking booking, bool bookingMessage) // Skriver ner en bokning i textfilen
         { 
-            if (!IsBooked(booking)) // Om bokningen inte finns så sparas den, men om det redan finns en det datumet så bokas det
+            if (!IsBooked(booking)) // Om bokningen inte redan finns så bokas den
             {
                 using (StreamWriter sw = new StreamWriter(Path, true))
                 {
@@ -54,9 +57,10 @@ namespace Labb3WPF
 
         public static void RemoveBooking(int bookingIndex) // Skriver om textfilen utan den valda bokningen(bookingIndex)
         {
-            // Skapar en lista med alla existerande bokningar
-            // Tar bort den valda bokningen (bookingIndex) i listan 
-            // Skriver sedan över textfilen med nya listan med bokningar
+            // Skapar en lista
+            // Lägger in alla bokningar i den listan
+            // Tar bort den valda bokningen (bookingIndex) från listan 
+            // Skriver sedan över textfilen utan den bokning som tagits bort
             var bookings = new List<Booking>();
             bookings = LoadBookings();
             bookings.Remove(bookings[bookingIndex]);

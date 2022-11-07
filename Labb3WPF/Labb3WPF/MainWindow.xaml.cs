@@ -24,7 +24,7 @@ namespace Labb3WPF
         public MainWindow()
         {
             InitializeComponent();
-            var startBokningar = new List<Booking>()
+            var startBokningar = new List<Booking>() // De bokningar som alltid ska finnas med
             { 
                 new Booking("Per", "2022-11-5", "18:00", 3),
                 new Booking("Ulla", "2022-11-7", "17:00", 5),
@@ -32,7 +32,7 @@ namespace Labb3WPF
             };
             foreach(var booking in startBokningar)
             {
-                if(!FileHandler.IsBooked(booking)) // om inte startBokningarna finns så sparas de
+                if(!FileHandler.IsBooked(booking)) // om inte startBokningar finns så bokar programmet dom
                     FileHandler.SaveBooking(booking, false);
             }
         }
@@ -66,7 +66,7 @@ namespace Labb3WPF
             }
         }
 
-        private void VisaBokningar_Click(object sender, RoutedEventArgs e)
+        private void VisaBokningar_Click(object sender, RoutedEventArgs e) // Hämtar alla bokningar från txt-filen och skriver ut dom
         {
             lbxBokningar.Items.Clear();
             var bookings = new List<Booking>();
@@ -84,7 +84,7 @@ namespace Labb3WPF
             {
             int selectedBooking = lbxBokningar.SelectedIndex;
             FileHandler.RemoveBooking(selectedBooking);
-            VisaBokningar_Click(null, null);
+            VisaBokningar_Click(null, null); // Uppdaterar listan efter en avbokning
             }
         }
     }
